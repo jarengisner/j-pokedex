@@ -33,10 +33,20 @@ let pokemonRepository = (function () {
   function getPokemon() {
     return pokemonList;
   }
+  function addListItem(pokemon) {
+    let pokemonUnorderedList = document.querySelector('.pokemon-list');
+    let pokemonListItem = document.createElement('li');
+    let pokemonButton = document.createElement('button');
+    pokemonButton.innerText = pokemon.name;
+    pokemonButton.classList.add('poke-box');
+    pokemonListItem.appendChild(pokemonButton);
+    pokemonUnorderedList.appendChild(pokemonListItem);
+  }
   //function returns an object with keys associated to the above functions//
   return {
     add: add,
     getPokemon: getPokemon,
+    addListItem: addListItem,
   };
 })();
 
@@ -45,17 +55,5 @@ pokemonRepository.add('Charmander', 3, ['fire', 'fighting'], 2.5);
 
 /*for each loop that prints detials for each pokemon in pokemonList, accessed through the object returned by pokemonRepository*/
 pokemonRepository.getPokemon().forEach(function (pokemon) {
-  if (pokemon.height > 5) {
-    document.write(
-      `<p>${pokemon.name}</p> <p>Height: ${pokemon.height} --- That's one tall Pokemon! </p>`
-    );
-    document.write('<br>');
-  } else {
-    document.write(
-      `<p>${pokemon.name} </p> <p> Height: ${pokemon.height} </p>`
-    );
-    document.write('<br>');
-  }
+  pokemonRepository.addListItem(pokemon);
 });
-
-console.log(pokemonRepository.getPokemon());

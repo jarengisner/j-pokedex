@@ -1,0 +1,12 @@
+.poke-box {
+  width: 500px;
+  height: 100px;
+  background-color: lightblue;
+  border: none;
+  border-radius: 5px;
+}
+
+li {
+  list-style: none;
+  margin: 10px;
+}
