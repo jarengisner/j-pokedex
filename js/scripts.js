@@ -4,29 +4,25 @@ let pokemonRepository = (function () {
     {
       name: 'Bulbasaur',
       height: 2,
-      types: ['grass', 'poison'],
       weight: '15.2 lbs',
     },
     {
       name: 'Ivysaur',
       height: 3,
-      types: ['grass', 'fighting'],
       weight: '15.2 lbs',
     },
     {
       name: 'Venasaur',
       height: 6,
-      types: ['grass', 'fighting'],
       weight: '15.2 lbs',
     },
   ];
 
   //function used to add pokemon to the pokemonList//
-  function add(name, height, [...types], weight) {
+  function add(name, height, weight) {
     return pokemonList.push({
       name: name,
       height: height,
-      types: [types],
       weight: weight,
     });
   }
@@ -48,7 +44,10 @@ let pokemonRepository = (function () {
     pokemonListItem.appendChild(pokemonButton);
     pokemonUnorderedList.appendChild(pokemonListItem);
     //event listener for showing more details//
-    pokemonButton.addEventListener('click', showDetails);
+    //Remember that the callback function always accepts event as its parameter, don't try to add the function here just alone like before//
+    pokemonButton.addEventListener('click', function () {
+      showDetails(pokemon);
+    });
   }
 
   function showDetails(pokemon) {
@@ -64,7 +63,7 @@ let pokemonRepository = (function () {
 })();
 
 //call to test the add functionality//
-//pokemonRepository.add('Charmander', 3, ['fire', 'fighting'], 2.5);
+pokemonRepository.add('Charmander', 3, 2.5);
 
 /*for each loop that prints detials for each pokemon in pokemonList, accessed through the object returned by pokemonRepository*/
 pokemonRepository.getPokemon().forEach(function (pokemon) {
