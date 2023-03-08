@@ -5,6 +5,8 @@ Technologies used:
 -Javascript
 -CSS
 
+API used: 'https://pokeapi.co/api/v2/pokemon/?limit=1000'.
+
 By connecting an external API, the goal is to build a Pokedex app,
 using javascript to display our pokemon (objects) onto the page.
 
