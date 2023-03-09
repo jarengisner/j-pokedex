@@ -11,6 +11,15 @@ let pokemonRepository = (function () {
   function getPokemon() {
     return pokemonList;
   }
+  //function for loading screen//
+  function showLoadScreen() {
+    let load = document.querySelector('.load');
+    load.classList.remove('hidden');
+  }
+  function hideLoadScreen() {
+    let load = document.querySelector('.load');
+    load.classList.add('hidden');
+  }
 
   //Function that adds an item to the list, then creates a button li and appends it to the DOM//
   function addListItem(pokemon) {
@@ -33,6 +42,7 @@ let pokemonRepository = (function () {
   //Beginning of fetch function to operate with the API//
   //Loads the list of pokemon from the pokemonAPI//
   function loadList() {
+    showLoadScreen();
     return fetch(apiUrl)
       .then(function (response) {
         return response.json();
@@ -45,14 +55,17 @@ let pokemonRepository = (function () {
           };
           //Adds the pokemon generated above from API to pokemonList//
           add(pokemon);
+          hideLoadScreen();
         });
       })
       .catch(function (e) {
         console.error(e);
+        hideLoadScreen();
       });
   }
   //loads details by fetching from individual pokemon's details url//
   function loadDetails(item) {
+    showLoadScreen();
     let url = item.detailsUrl;
     return fetch(url)
       .then(function (response) {
@@ -62,9 +75,11 @@ let pokemonRepository = (function () {
         item.imageUrl = details.sprites.front_default;
         item.height = details.height;
         item.types = details.types;
+        hideLoadScreen();
       })
       .catch(function (e) {
         console.error(e);
+        hideLoadScreen();
       });
   }
   //function calls loadDetails on individual pokemon, then logs it out, connected to event listener//
