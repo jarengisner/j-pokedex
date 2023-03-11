@@ -2,6 +2,7 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=1000';
+  let modalContainer = document.querySelector('#modal-container');
   //function used to add pokemon to the pokemonList//
   function add(pokemon) {
     pokemonList.push(pokemon);
@@ -36,6 +37,7 @@ let pokemonRepository = (function () {
     //callback function always accepts event as its parameter, don't try to add the function here just alone like before//
     pokemonButton.addEventListener('click', function (event) {
       showDetails(pokemon);
+      console.log(pokemon);
     });
   }
 
@@ -85,9 +87,87 @@ let pokemonRepository = (function () {
   //function calls loadDetails on individual pokemon, then logs it out, connected to event listener//
   function showDetails(item) {
     pokemonRepository.loadDetails(item).then(function () {
-      console.log(item);
+      showModal(item);
     });
   }
+  //space for the showModal function//
+  //instead of showdetails calling console log it will call this//
+  function showModal(item) {
+    modalContainer.innerHTML = '';
+
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    let sprite = document.createElement('img');
+    sprite.setAttribute('src', item.imageUrl);
+    sprite.classList.add('poke-sprite');
+
+    let modalTitle = document.createElement('h1');
+    modalTitle.classList.add('modal-title');
+    modalTitle.innerText = item.name;
+
+    let modalText = document.createElement('p');
+    modalText.classList.add('.modal-text');
+    modalText.innerText = `Height: ${item.height}`;
+
+    let modalTypesContainer = document.createElement('ul');
+    modalTypesContainer.classList.add('.types-container');
+
+    let modalCloseButton = document.createElement('button');
+    modalCloseButton.classList.add('close-button');
+    modalCloseButton.innerText = 'Close';
+    modalCloseButton.addEventListener('click', () => {
+      hideModal();
+    });
+    //determines what type the pokemon is and then displays that as a button for the type//
+    item.types.forEach((type) => {
+      typeCreator(type);
+    });
+
+    modal.appendChild(modalCloseButton);
+    modal.appendChild(sprite);
+    modal.appendChild(modalTitle);
+    modal.appendChild(modalText);
+    modal.appendChild(modalTypesContainer);
+    modalContainer.appendChild(modal);
+    //creates the button for the type//
+    function typeCreator(type) {
+      let typesListItem = document.createElement('li');
+      typesListItem.classList.add('typeLi');
+      let typeButton = document.createElement('button');
+      typeButton.classList.add('buttonForType');
+      typeButton.innerText = type.type.name;
+      typesListItem.appendChild(typeButton);
+      modalTypesContainer.appendChild(typesListItem);
+      typeColor(typeButton.innerText);
+      //determines the styling for the type button, based off of their type//
+      function typeColor(text) {
+        typeButton.classList.add(`${text}-type`);
+      }
+
+      //add classlist here, and point it to conditional function for certain type and associate it with color//
+    }
+    modalContainer.classList.add('is-visible');
+  }
+
+  function hideModal() {
+    modalContainer.classList.remove('is-visible');
+  }
+
+  window.addEventListener('keydown', (x) => {
+    if (x.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    }
+  });
+
+  modalContainer.addEventListener('click', (x) => {
+    let target = x.target;
+    if (target === modalContainer) {
+      hideModal();
+    }
+  });
+
+  //end modal space//
 
   //function returns an object with keys associated to the above functions//
   return {

@@ -1,6 +1,6 @@
 .poke-box {
-  width: 500px;
-  height: 100px;
+  width: 250px;
+  height: 200px;
   background-color: lightblue;
   border: none;
   border-radius: 5px;
@@ -9,6 +9,9 @@
 li {
   list-style: none;
   margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .load {
@@ -31,4 +34,155 @@ li {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 5px;
+  gap: 20px;
+  align-items: center;
+}
+
+#modal-container {
+  display: none;
+}
+
+#modal-container.is-visible {
+  position: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+}
+
+.modal {
+  margin: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 15px;
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+  z-index: 999;
+  border-radius: 5px;
+  align-items: center;
+}
+
+.buttonForType {
+  border-radius: 5px;
+  background-color: none;
+  border: 2px solid black;
+}
+
+.typeLi {
+  display: inline-block;
+  padding-right: 0px;
+  align-items: center;
+}
+ul {
+  padding-left: 0px;
+}
+
+.close-button {
+  float: right;
+  border: 2px solid #f55d5d;
+  background: none;
+  color: #f55d5d;
+  text-decoration: none;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.poke-sprite {
+  margin-left: 50px;
+  width: auto;
+  height: auto;
+}
+
+/*Styling for type buttons of different pokemon*/
+.buttonForType.water-type {
+  border-radius: 5px;
+  background-color: rgb(69, 144, 250);
+  border: 2px solid black;
+}
+
+.buttonForType.fire-type {
+  border-radius: 5px;
+  background-color: rgb(235, 107, 107);
+  border: 2px solid black;
+}
+.buttonForType.grass-type {
+  border-radius: 5px;
+  background-color: rgb(85, 204, 85);
+  border: 2px solid black;
+}
+.buttonForType.electric-type {
+  border-radius: 5px;
+  background-color: rgb(251, 251, 117);
+  border: 2px solid black;
+}
+.buttonForType.ice-type {
+  border-radius: 5px;
+  background-color: rgb(75, 202, 244);
+  border: 2px solid black;
+}
+.buttonForType.fighting-type {
+  border-radius: 5px;
+  background-color: rgb(214, 42, 42);
+  border: 2px solid black;
+}
+.buttonForType.poison-type {
+  border-radius: 5px;
+  background-color: rgb(214, 4, 214);
+  border: 2px solid black;
+}
+.buttonForType.ground-type {
+  border-radius: 5px;
+  background-color: tan;
+  border: 2px solid black;
+}
+.buttonForType.flying-type {
+  border-radius: 5px;
+  background-color: #c27fb7;
+  border: 2px solid black;
+}
+.buttonForType.psychic-type {
+  border-radius: 5px;
+  background-color: rgb(235, 107, 107);
+  border: 2px solid black;
+}
+.buttonForType.bug-type {
+  border-radius: 5px;
+  background-color: rgb(145, 215, 145);
+  border: 2px solid black;
+}
+.buttonForType.rock-type {
+  border-radius: 5px;
+  background-color: rgb(158, 128, 89);
+  border: 2px solid black;
+}
+.buttonForType.ghost-type {
+  border-radius: 5px;
+  background-color: rgb(158, 113, 158);
+  border: 2px solid black;
+}
+.buttonForType.dark-type {
+  border-radius: 5px;
+  background-color: rgb(118, 80, 80);
+  border: 2px solid black;
+}
+.buttonForType.dragon-type {
+  border-radius: 5px;
+  background-color: rgb(215, 72, 215);
+  border: 2px solid black;
+}
+.buttonForType.steel-type {
+  border-radius: 5px;
+  background-color: silver;
+  border: 2px solid black;
+}
+.buttonForType.fairy-type {
+  border-radius: 5px;
+  background-color: rgb(244, 142, 223);
+  border: 2px solid black;
 }
