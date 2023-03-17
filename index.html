@@ -1,33 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css" type="text/css">
-    <script src="https://kit.fontawesome.com/7fd6383234.js" crossorigin="anonymous"></script>
-    <title>JPokedex</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/7fd6383234.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/styles.css" type="text/css" />
+  <title>JPokedex</title>
 </head>
+
 <body>
-    <ul class="pokemon-list">
-        
-    </ul>
-    <div class="load hidden">
-        <img src="./6936489_controller_game_gaming_pokeball_icon.png">
+  <!--creates a dark themed nav-bar, containing a search bar, etc.-->
+  <nav class="navbar navbar-dark bg-dark">
+    <h1 class="pagetitle">Pokedex</h1>
+    <!--Soon to be a search bar I hope?-->
+    <div class="searchDiv">
+      <input type="text" class="searchBar" />
+      <button class="search-now">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
     </div>
-    <div id="modal-container"></div>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  </nav>
+  <ul class="list-group container list-group-flush">
+    <!--Creates a new div inside of the ul to style using boostrap grid-->
+    <div class="pokemon-list row" id="pokemon-div-id">
+
+    </div>
+  </ul>
+  <!--Loading screen which only appears when called by js-->
+  <div class="load hidden">
+    <img src="./6936489_controller_game_gaming_pokeball_icon.png" />
+  </div>
+  <!--Current modal, replace this next-->
+  <div id="modal-container"></div>
+  <!--scripts loading in jquery, bootstrap, etc-->
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script src="js/promise-polyfill.js"></script>
-    <script src="js/fetch.umd.js"></script>
-    <script src="js/scripts.js"></script>   
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <!--Polyfills and link to scripts.js-->
+  <script src="js/promise-polyfill.js"></script>
+  <script src="js/fetch.umd.js"></script>
+  <script src="js/scripts.js"></script>
 </body>
+
 </html>

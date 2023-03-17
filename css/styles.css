@@ -1,19 +1,42 @@
-.poke-box {
-  width: 250px;
-  height: 200px;
-  background-color: lightblue;
-  border: none;
-  border-radius: 5px;
+.pagetitle {
+  font-family: Poppins, sans-serif;
+  font-weight: 700;
 }
 
+.buttonForType {
+  margin: 5px;
+  height: auto;
+}
+
+.btn-dark {
+  height: 10vh;
+  font-family: Poppins, sans-serif;
+}
 li {
   list-style: none;
-  margin: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.hide {
+  display: none;
+}
+/*styling for the search bar, and button*/
+.searchDiv {
+  display: block;
+}
+
+.searchBar {
+  border: none;
+}
+.search-now {
+  background-color: rgb(101, 238, 101);
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border: none;
+}
+/*start checking here for unnecessary css*/
 .load {
   position: fixed;
   display: flex;
@@ -30,13 +53,13 @@ li {
 }
 
 /*remember to adapt the grid layout for ios*/
-.pokemon-list {
+/*.pokemon-list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 5px;
   gap: 20px;
   align-items: center;
-}
+}*/
 
 #modal-container {
   display: none;
@@ -97,6 +120,10 @@ ul {
   margin-left: 50px;
   width: auto;
   height: auto;
+}
+h1 {
+  font-family: Poppins, sans-serif;
+  color: white;
 }
 
 /*Styling for type buttons of different pokemon*/

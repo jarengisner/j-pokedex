@@ -23,16 +23,23 @@ let pokemonRepository = (function () {
   }
 
   //Function that adds an item to the list, then creates a button li and appends it to the DOM//
+  //selectors//
   function addListItem(pokemon) {
-    //selectors//
-    let pokemonUnorderedList = document.querySelector('.pokemon-list');
+    let listDiv = document.querySelector('#pokemon-div-id');
     let pokemonListItem = document.createElement('li');
+    pokemonListItem.classList.add(
+      'list-group-item',
+      'col-xl-4',
+      'col-lg-4',
+      'col-md-6',
+      'col-sm-12'
+    );
     let pokemonButton = document.createElement('button');
     //changes inner text, gives buttons a class, and appends them to the DOM//
     pokemonButton.innerText = pokemon.name;
-    pokemonButton.classList.add('poke-box');
+    pokemonButton.classList.add('btn-dark', 'btn-block', 'btn-primary');
     pokemonListItem.appendChild(pokemonButton);
-    pokemonUnorderedList.appendChild(pokemonListItem);
+    listDiv.appendChild(pokemonListItem);
     //event listener for showing more details//
     //callback function always accepts event as its parameter, don't try to add the function here just alone like before//
     pokemonButton.addEventListener('click', function (event) {
@@ -166,7 +173,6 @@ let pokemonRepository = (function () {
       hideModal();
     }
   });
-
   //end modal space//
 
   //function returns an object with keys associated to the above functions//
