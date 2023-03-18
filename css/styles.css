@@ -18,9 +18,10 @@ li {
   align-items: center;
   justify-content: center;
 }
-
-.hide {
-  display: none;
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /*styling for the search bar, and button*/
 .searchDiv {
@@ -52,45 +53,6 @@ li {
   display: none;
 }
 
-/*remember to adapt the grid layout for ios*/
-/*.pokemon-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  margin: 5px;
-  gap: 20px;
-  align-items: center;
-}*/
-
-#modal-container {
-  display: none;
-}
-
-#modal-container.is-visible {
-  position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-}
-
-.modal {
-  margin: auto;
-  display: inline-block;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 15px;
-  width: 100%;
-  max-width: 700px;
-  text-align: center;
-  z-index: 999;
-  border-radius: 5px;
-  align-items: center;
-}
-
 .buttonForType {
   border-radius: 5px;
   background-color: none;
@@ -106,24 +68,17 @@ ul {
   padding-left: 0px;
 }
 
-.close-button {
-  float: right;
-  border: 2px solid #f55d5d;
-  background: none;
-  color: #f55d5d;
-  text-decoration: none;
-  padding: 3px;
-  border-radius: 5px;
-}
-
 .poke-sprite {
-  margin-left: 50px;
   width: auto;
   height: auto;
 }
-h1 {
+.modal-title {
   font-family: Poppins, sans-serif;
+}
+
+h1 {
   color: white;
+  font-family: Poppins, sans-serif;
 }
 
 /*Styling for type buttons of different pokemon*/
