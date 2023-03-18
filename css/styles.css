@@ -1,19 +1,43 @@
-.poke-box {
-  width: 250px;
-  height: 200px;
-  background-color: lightblue;
-  border: none;
-  border-radius: 5px;
+.pagetitle {
+  font-family: Poppins, sans-serif;
+  font-weight: 700;
 }
 
+.buttonForType {
+  margin: 5px;
+  height: auto;
+}
+
+.btn-dark {
+  height: 10vh;
+  font-family: Poppins, sans-serif;
+}
 li {
   list-style: none;
-  margin: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/*styling for the search bar, and button*/
+.searchDiv {
+  display: block;
+}
 
+.searchBar {
+  border: none;
+}
+.search-now {
+  background-color: rgb(101, 238, 101);
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border: none;
+}
+/*start checking here for unnecessary css*/
 .load {
   position: fixed;
   display: flex;
@@ -27,45 +51,6 @@ li {
 }
 .load.hidden {
   display: none;
-}
-
-/*remember to adapt the grid layout for ios*/
-.pokemon-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  margin: 5px;
-  gap: 20px;
-  align-items: center;
-}
-
-#modal-container {
-  display: none;
-}
-
-#modal-container.is-visible {
-  position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-}
-
-.modal {
-  margin: auto;
-  display: inline-block;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 15px;
-  width: 100%;
-  max-width: 700px;
-  text-align: center;
-  z-index: 999;
-  border-radius: 5px;
-  align-items: center;
 }
 
 .buttonForType {
@@ -83,20 +68,17 @@ ul {
   padding-left: 0px;
 }
 
-.close-button {
-  float: right;
-  border: 2px solid #f55d5d;
-  background: none;
-  color: #f55d5d;
-  text-decoration: none;
-  padding: 3px;
-  border-radius: 5px;
-}
-
 .poke-sprite {
-  margin-left: 50px;
   width: auto;
   height: auto;
+}
+.modal-title {
+  font-family: Poppins, sans-serif;
+}
+
+h1 {
+  color: white;
+  font-family: Poppins, sans-serif;
 }
 
 /*Styling for type buttons of different pokemon*/
