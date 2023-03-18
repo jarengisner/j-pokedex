@@ -153,9 +153,19 @@ let pokemonRepository = (function () {
     modalMain.appendChild(modalTypesContainer);
     //determines the styling for the type button, based off of their type//
   }
-
   //end modal space//
+  function search(query) {
+    let listDiv = document.querySelector('#pokemon-div-id');
+    listDiv.innerHTML = '';
 
+    getPokemon()
+      .filter((pokemon) => {
+        return pokemon.name.toLowerCase().includes(query.toLowerCase());
+      })
+      .forEach((pokemon) => {
+        addListItem(pokemon);
+      });
+  }
   //function returns an object with keys associated to the above functions//
   return {
     add: add,
@@ -164,6 +174,7 @@ let pokemonRepository = (function () {
     loadList: loadList,
     loadDetails: loadDetails,
     showDetails: showDetails,
+    search: search,
   };
 })();
 //loads the list of pokemon from the API, then gets all those pokemon, and creates individual buttons for each//
