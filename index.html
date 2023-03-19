@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/7fd6383234.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/styles.css" type="text/css" />
+  <link rel="stylesheet" href="dist/styles-min.css" type="text/css" />
   <title>JPokedex</title>
 </head>
 
@@ -21,8 +21,12 @@
     <h1 class="pagetitle">Pokedex</h1>
     <!--Soon to be a search bar I hope?-->
     <div class="searchDiv">
-      <input type="text" class="searchBar" onkeyup="pokemonRepository.search(event.target.value)"
-        placeholder="Find a Pokemon" />
+      <form action="">
+        <input type="text" class="searchBar" id="search-input" placeholder="Find a Pokemon" aria-label="Search Bar" />
+        <button class="search-now">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
     </div>
   </nav>
   <ul class="list-group container list-group-flush">
@@ -65,9 +69,9 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <!--Polyfills and link to scripts.js-->
-  <script src="src/promise-polyfill.js"></script>
-  <script src="src/fetch.umd.js"></script>
-  <script src="src/scripts.js"></script>
+  <script src="dist/promise-polyfill.js"></script>
+  <script src="dist/fetch.umd.js"></script>
+  <script src="dist/scripts.min.js"></script>
 </body>
 
 </html>

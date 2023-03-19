@@ -24,50 +24,47 @@ let pokemonRepository = (function () {
 
   //Function that adds an item to the list, then creates a button li and appends it to the DOM//
   //selectors//
+  //attempt to show image of pokemon on main button//
   function addListItem(pokemon) {
     showLoadScreen();
-    let listDiv = document.querySelector('#pokemon-div-id');
-    let pokemonListItem = document.createElement('li');
-    pokemonListItem.classList.add(
-      'list-group-item',
-      'col-xl-4',
-      'col-lg-4',
-      'col-md-6',
-      'col-sm-12'
-    );
-    let pokemonButton = document.createElement('button');
-    //changes inner text, gives buttons a class, and appends them to the DOM//
-    pokemonButton.innerText = pokemon.name;
-    pokemonButton.classList.add('btn-dark', 'btn-block', 'btn-primary');
-    pokemonButton.setAttribute('data-toggle', 'modal');
-    pokemonButton.setAttribute('data-target', '#exampleModal');
-    getPicture(pokemon);
-    //attempt to show image of pokemon on main button//
-    function getPicture(pokemon) {
-      return fetch(pokemon.detailsUrl)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (details) {
-          pokeSprite = details.sprites.front_default;
-          let imgElement = document.createElement('img');
-          imgElement.setAttribute('src', pokeSprite);
-          pokemonButton.appendChild(imgElement);
-        })
-        .catch(function (error) {
-          console.log(error);
+    return fetch(pokemon.detailsUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (details) {
+        pokeSprite = details.sprites.front_default;
+        let listDiv = document.querySelector('#pokemon-div-id');
+        let pokemonListItem = document.createElement('li');
+        pokemonListItem.classList.add(
+          'list-group-item',
+          'col-xl-4',
+          'col-lg-4',
+          'col-md-6',
+          'col-sm-12'
+        );
+        let pokemonButton = document.createElement('button');
+        //changes inner text, gives buttons a class, and appends them to the DOM//
+        pokemonButton.innerText = pokemon.name;
+        pokemonButton.classList.add('btn-dark', 'btn-block', 'btn-primary');
+        pokemonButton.setAttribute('data-toggle', 'modal');
+        pokemonButton.setAttribute('data-target', '#exampleModal');
+        let imgElement = document.createElement('img');
+        imgElement.setAttribute('src', pokeSprite);
+        pokemonButton.appendChild(imgElement);
+        pokemonListItem.appendChild(pokemonButton);
+        listDiv.appendChild(pokemonListItem);
+        //event listener for showing more details//
+        pokemonButton.addEventListener('click', function (event) {
+          showDetails(pokemon);
+          console.log(pokemon);
         });
-    }
-    //end of the attempt//
-    pokemonListItem.appendChild(pokemonButton);
-    listDiv.appendChild(pokemonListItem);
-    //event listener for showing more details//
-    pokemonButton.addEventListener('click', function (event) {
-      showDetails(pokemon);
-      console.log(pokemon);
-    });
-    hideLoadScreen();
+        hideLoadScreen();
+      })
+      .catch(function (error) {
+        console.error('Could not load Pokemon');
+      });
   }
+  //end of the attempt//
 
   //Beginning of fetch function to operate with the API//
   //Loads the list of pokemon from the pokemonAPI//
@@ -171,6 +168,15 @@ let pokemonRepository = (function () {
     modalMain.appendChild(modalTypesContainer);
   }
   //end modal space//
+
+  //search function//
+  document
+    .querySelector('.search-now')
+    .addEventListener('click', function (event) {
+      event.preventDefault();
+      let searchObject = document.getElementById('search-input');
+      pokemonRepository.search(searchObject.value);
+    });
   function search(query) {
     let listDiv = document.querySelector('#pokemon-div-id');
     listDiv.innerHTML = '';
@@ -183,6 +189,7 @@ let pokemonRepository = (function () {
         addListItem(pokemon);
       });
   }
+
   //function returns an object with keys associated to the above functions//
   return {
     add: add,
