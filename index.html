@@ -11,20 +11,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/7fd6383234.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/styles.css" type="text/css" />
+  <link rel="stylesheet" href="dist/styles-min.css" type="text/css" />
   <title>JPokedex</title>
 </head>
 
 <body>
   <!--creates a dark themed nav-bar, containing a search bar, etc.-->
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-dark bg-dark fixed-top">
     <h1 class="pagetitle">Pokedex</h1>
     <!--Soon to be a search bar I hope?-->
     <div class="searchDiv">
-      <input type="text" class="searchBar" onkeyup="pokemonRepository.search(event.target.value)" />
-      <button class="search-now">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
+      <form action="">
+        <input type="text" class="searchBar" id="search-input" placeholder="Find a Pokemon" aria-label="Search Bar" />
+        <button class="search-now">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
     </div>
   </nav>
   <ul class="list-group container list-group-flush">
@@ -35,7 +37,7 @@
   </ul>
   <!--Loading screen which only appears when called by js-->
   <div class="load hidden">
-    <img src="./6936489_controller_game_gaming_pokeball_icon.png" />
+    <img src="img/6936489_controller_game_gaming_pokeball_icon.png" />
   </div>
   <!--Current modal, replace this next-->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="pokemonModalLabel"
@@ -67,9 +69,9 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <!--Polyfills and link to scripts.js-->
-  <script src="js/promise-polyfill.js"></script>
-  <script src="js/fetch.umd.js"></script>
-  <script src="js/scripts.js"></script>
+  <script src="dist/promise-polyfill.js"></script>
+  <script src="dist/fetch.umd.js"></script>
+  <script src="dist/scripts.min.js"></script>
 </body>
 
 </html>

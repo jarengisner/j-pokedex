@@ -1,7 +1,7 @@
 //IIDE to wrap the pokemon objects, containing their characteristics//
 let pokemonRepository = (function () {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=1000';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=500';
   let modalContainer = document.querySelector('#modal-container');
   //function used to add pokemon to the pokemonList//
   function add(pokemon) {
@@ -24,31 +24,47 @@ let pokemonRepository = (function () {
 
   //Function that adds an item to the list, then creates a button li and appends it to the DOM//
   //selectors//
+  //attempt to show image of pokemon on main button//
   function addListItem(pokemon) {
-    let listDiv = document.querySelector('#pokemon-div-id');
-    let pokemonListItem = document.createElement('li');
-    pokemonListItem.classList.add(
-      'list-group-item',
-      'col-xl-4',
-      'col-lg-4',
-      'col-md-6',
-      'col-sm-12'
-    );
-    let pokemonButton = document.createElement('button');
-    //changes inner text, gives buttons a class, and appends them to the DOM//
-    pokemonButton.innerText = pokemon.name;
-    pokemonButton.classList.add('btn-dark', 'btn-block', 'btn-primary');
-    pokemonButton.setAttribute('data-toggle', 'modal');
-    pokemonButton.setAttribute('data-target', '#exampleModal');
-    pokemonListItem.appendChild(pokemonButton);
-    listDiv.appendChild(pokemonListItem);
-    //event listener for showing more details//
-    //callback function always accepts event as its parameter, don't try to add the function here just alone like before//
-    pokemonButton.addEventListener('click', function (event) {
-      showDetails(pokemon);
-      console.log(pokemon);
-    });
+    showLoadScreen();
+    return fetch(pokemon.detailsUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (details) {
+        pokeSprite = details.sprites.front_default;
+        let listDiv = document.querySelector('#pokemon-div-id');
+        let pokemonListItem = document.createElement('li');
+        pokemonListItem.classList.add(
+          'list-group-item',
+          'col-xl-4',
+          'col-lg-4',
+          'col-md-6',
+          'col-sm-12'
+        );
+        let pokemonButton = document.createElement('button');
+        //changes inner text, gives buttons a class, and appends them to the DOM//
+        pokemonButton.innerText = pokemon.name;
+        pokemonButton.classList.add('btn-dark', 'btn-block', 'btn-primary');
+        pokemonButton.setAttribute('data-toggle', 'modal');
+        pokemonButton.setAttribute('data-target', '#exampleModal');
+        let imgElement = document.createElement('img');
+        imgElement.setAttribute('src', pokeSprite);
+        pokemonButton.appendChild(imgElement);
+        pokemonListItem.appendChild(pokemonButton);
+        listDiv.appendChild(pokemonListItem);
+        //event listener for showing more details//
+        pokemonButton.addEventListener('click', function (event) {
+          showDetails(pokemon);
+          console.log(pokemon);
+        });
+        hideLoadScreen();
+      })
+      .catch(function (error) {
+        console.error('Could not load Pokemon');
+      });
   }
+  //end of the attempt//
 
   //Beginning of fetch function to operate with the API//
   //Loads the list of pokemon from the pokemonAPI//
@@ -96,7 +112,7 @@ let pokemonRepository = (function () {
       });
   }
 
-  //function calls loadDetails on individual pokemon, then logs it out, connected to event listener//
+  //function calls loadDetails on individual pokemon, connected to event listener//
   function showDetails(item) {
     pokemonRepository.loadDetails(item).then(function () {
       showModal(item);
@@ -104,7 +120,6 @@ let pokemonRepository = (function () {
   }
 
   //space for the showModal function//
-  //instead of showdetails calling console log it will call this//
   function showModal(item) {
     let modalName = document.querySelector('.modal-title');
     let modalMain = document.querySelector('.modal-body');
@@ -142,7 +157,7 @@ let pokemonRepository = (function () {
       typesListItem.appendChild(typeButton);
       modalTypesContainer.appendChild(typesListItem);
       typeColor(typeButton.innerText);
-
+      //determines the styling for the type button, based off of their type//
       function typeColor(text) {
         typeButton.classList.add(`${text}-type`);
       }
@@ -151,9 +166,17 @@ let pokemonRepository = (function () {
     modalMain.appendChild(modalHeight);
     modalMain.appendChild(modalWeight);
     modalMain.appendChild(modalTypesContainer);
-    //determines the styling for the type button, based off of their type//
   }
   //end modal space//
+
+  //search function//
+  document
+    .querySelector('.search-now')
+    .addEventListener('click', function (event) {
+      event.preventDefault();
+      let searchObject = document.getElementById('search-input');
+      pokemonRepository.search(searchObject.value);
+    });
   function search(query) {
     let listDiv = document.querySelector('#pokemon-div-id');
     listDiv.innerHTML = '';
@@ -166,6 +189,7 @@ let pokemonRepository = (function () {
         addListItem(pokemon);
       });
   }
+
   //function returns an object with keys associated to the above functions//
   return {
     add: add,
@@ -178,7 +202,6 @@ let pokemonRepository = (function () {
   };
 })();
 //loads the list of pokemon from the API, then gets all those pokemon, and creates individual buttons for each//
-//Updated forEach from before//
 pokemonRepository.loadList().then(function () {
   pokemonRepository.getPokemon().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
